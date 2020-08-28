@@ -8,6 +8,7 @@ parameters:
 
 steps:
 - task: CopyFiles@2
+  displayName: 'Copy files to temp directory'
   inputs:
     SourceFolder: 'files'
     Contents: '**'
@@ -18,11 +19,11 @@ steps:
     SourceFolder: $(Build.SourcesDirectory)/temp
     Contents: ${{ parameters.pattern }}
 - task: Bash@3
+  displayName: 'Check deleted files'
   inputs:
     targetType: 'inline'
     script: |
       existing=$(find temp -type f | xargs)
-      echo "Existing files: $existing, expected: ${{ parameters.files }}"; 
       if [ "$existing" != "${{ parameters.files }}" ]; then
         echo "Existing files: $existing, expected: ${{ parameters.files }}"; exit 1;
       fi 
