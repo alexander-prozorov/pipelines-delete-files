@@ -22,7 +22,7 @@ steps:
     targetType: 'inline'
     script: |
       existing=$(find files -type f | xargs)
-      echo "Existing fles: $existing, expected: ${{ parameters.files }}"; 
+      echo "Existing files: $existing, expected: ${{ parameters.files }}"; 
       if [ "$existing" != ${{ parameters.files }} ]; then
         echo "Existing files: $existing, expected: ${{ parameters.files }}"; exit 1;
       fi 
