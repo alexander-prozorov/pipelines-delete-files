@@ -18,7 +18,7 @@ steps:
   inputs:
     SourceFolder: 
     Contents: |
-      !files/**/*.css
+      !/**/*.css
 
 - task: Bash@3
   inputs:
