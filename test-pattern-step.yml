@@ -3,6 +3,9 @@ parameters:
   type: string
 - name: 'files'
   type: string
+- name: 'displayName'
+  type: string
+
 
 steps:
 - task: DeleteFiles@1
@@ -10,6 +13,7 @@ steps:
     SourceFolder: $(Build.SourcesDirectory)/files
     Contents: ${{ parameters.pattern }}
 - task: Bash@3
+  displayName: ${{ parameters.displayName }}
   inputs:
     targetType: 'inline'
     script: |
