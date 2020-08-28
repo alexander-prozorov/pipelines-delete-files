@@ -19,7 +19,7 @@ steps:
 - task: Bash@3
   inputs:
     targetType: 'inline'
-    script: 'ls'
+    script: 'find'
 
 - task: Bash@3
   inputs:
