@@ -19,7 +19,7 @@ steps:
     SourceFolder: $(Build.SourcesDirectory)/files
     Contents: |
       /**/*.js
-      !/**/file2.js
+      !/**/file3.js
 
 - task: Bash@3
   inputs:
