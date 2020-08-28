@@ -1,23 +1,57 @@
 pool: v-aprozo
 
 steps:
-- task: Bash@3
-  inputs:
-    targetType: 'inline'
-    script: 'find files -type f | xargs'
-
-- task: DeleteFiles@1
-  inputs:
-    SourceFolder: $(Build.SourcesDirectory)/files
-    Contents: |
+- template: test-pattern-step.yml
+  parameters:
+    displayName: 'Delete all, except the specified file'
+    pattern: |
       /**/*
       !/**/file3.js
+    files: 'files/subfolder1/file3.js'
 
-- task: Bash@3
-  inputs:
-    targetType: 'inline'
-    script: |
-      files=$(find files -type f | xargs)
-      if [ "$files" != "files/subfolder1/file3.js" ]; then
-        echo "Extracted fles: $files, expected: "; exit 1;
-      fi 
+- template: test-pattern-step.yml
+  parameters:
+    displayName: 'Delete all, except the specified extension'
+    pattern: |
+      /**/*
+      !/**/*.js
+    files: 'files/file1.js files/subfolder1/file3.js files/subfolder1/subfolder2/file5.js'
+
+- template: test-pattern-step.yml
+  parameters:
+    displayName: 'Delete all, except the specified folder'
+    pattern: |
+      /**/*
+      !/**/subfolder2/*
+    files: 'files/subfolder1/subfolder2/file5.js files/subfolder1/subfolder2/file6.css'
+  
+- template: test-pattern-step.yml
+  parameters:
+    displayName: 'Delete all with multiple exclusions'
+    pattern: |
+      /**/*
+      !file1.js
+      !/**/subfolder2/*
+    files: 'files/file1.js files/subfolder1/subfolder2/file5.js files/subfolder1/subfolder2/file6.css'
+
+- template: test-pattern-step.yml
+  parameters:
+    displayName: 'Delete by extension'
+    pattern: |
+      /**/*.css
+    files: 'files/file1.js files/subfolder1/file3.js files/subfolder1/subfolder2/file5.js'
+
+- template: test-pattern-step.yml
+  parameters:
+    displayName: 'Delete by folder'
+    pattern: |
+      subfolder1/**/*
+    files: 'files/file1.js files/file2.css'
+
+- template: test-pattern-step.yml
+  parameters:
+    displayName: 'Delete with multiple conditions'
+    pattern: |
+      /**/*.css
+      /**/subfolder1/*
+    files: 'files/file1.js'
