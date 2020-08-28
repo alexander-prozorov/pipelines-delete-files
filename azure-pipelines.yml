@@ -17,7 +17,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      files=$(find files type f | xargs)
+      files=$(find files -type f | xargs)
       if [ "$files" != "files/subfolder1/file3.js" ]; then
         echo "Extracted fles: $files, expected: "; exit 1;
       fi 
