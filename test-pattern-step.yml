@@ -23,6 +23,6 @@ steps:
     script: |
       existing=$(find temp -type f | xargs)
       echo "Existing files: $existing, expected: ${{ parameters.files }}"; 
-      if [ "$existing" != ${{ parameters.files }} ]; then
+      if [ "$existing" != "${{ parameters.files }}" ]; then
         echo "Existing files: $existing, expected: ${{ parameters.files }}"; exit 1;
       fi 
