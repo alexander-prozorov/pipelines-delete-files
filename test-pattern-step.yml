@@ -6,11 +6,15 @@ parameters:
 - name: 'displayName'
   type: string
 
-
 steps:
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: 'files'
+    Contents: '**'
+    TargetFolder: 'temp'
 - task: DeleteFiles@1
   inputs:
-    SourceFolder: $(Build.SourcesDirectory)/files
+    SourceFolder: $(Build.SourcesDirectory)/temp
     Contents: ${{ parameters.pattern }}
 - task: Bash@3
   displayName: ${{ parameters.displayName }}
