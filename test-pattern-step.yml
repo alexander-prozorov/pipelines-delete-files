@@ -21,7 +21,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      existing=$(find temp -type f | xargs)
+      existing=$(find temp -type f)
       echo "Existing files: $existing, expected: ${{ parameters.files }}"; 
       if [ "$existing" != ${{ parameters.files }} ]; then
         echo "Existing files: $existing, expected: ${{ parameters.files }}"; exit 1;
