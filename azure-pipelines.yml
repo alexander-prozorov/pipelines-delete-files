@@ -14,12 +14,7 @@ steps:
     SourceFolder: 
     Contents: |
       /**/*
-      !**.css
-
-- task: Bash@3
-  inputs:
-    targetType: 'inline'
-    script: 'find'
+      !files/**/*.css
 
 - task: Bash@3
   inputs:
