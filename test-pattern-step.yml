@@ -13,15 +13,15 @@ steps:
     Contents: '**'
     TargetFolder: 'temp'
 - task: DeleteFiles@1
+  displayName: ${{ parameters.displayName }}
   inputs:
     SourceFolder: $(Build.SourcesDirectory)/temp
     Contents: ${{ parameters.pattern }}
 - task: Bash@3
-  displayName: ${{ parameters.displayName }}
   inputs:
     targetType: 'inline'
     script: |
-      existing=$(find files -type f | xargs)
+      existing=$(find temp -type f | xargs)
       echo "Existing files: $existing, expected: ${{ parameters.files }}"; 
       if [ "$existing" != ${{ parameters.files }} ]; then
         echo "Existing files: $existing, expected: ${{ parameters.files }}"; exit 1;
