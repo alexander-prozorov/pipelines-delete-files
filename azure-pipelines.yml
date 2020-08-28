@@ -1,11 +1,3 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
-trigger:
-- master
-
 pool: v-aprozo
 
 steps:
@@ -24,6 +16,8 @@ steps:
 - task: Bash@3
   inputs:
     targetType: 'inline'
-    script: 'find files -type f | xargs'
-
-
+    script: |
+      files=$(find files type f | xargs)
+      if [ "$files" != "files/subfolder1/file3.js" ]; then
+        echo "Extracted fles: $files, expected: "; exit 1;
+      fi 
