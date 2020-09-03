@@ -53,7 +53,7 @@ steps:
     displayName: 'Delete with multiple conditions'
     pattern: |
       /**/*.css
-      /subfolder1/*
+      /subfolder1/*.js
     files: 'temp/file1.js temp/subfolder1/subfolder2/file5.js'
 
 
