@@ -56,11 +56,4 @@ steps:
       /subfolder1/*
     files: 'temp/file1.js temp/subfolder1/subfolder2/file5.js'
 
-- template: test-pattern-step.yml
-  parameters:
-    displayName: 'Delete all but one subdirectory'
-    pattern: |
-      subfolder1/!({file1.js})
-    files: 'temp/file1.js temp/subfolder1/subfolder2/file5.js'
-
 
