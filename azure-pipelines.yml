@@ -43,6 +43,20 @@ steps:
 
 - template: test-pattern-step.yml
   parameters:
+    displayName: 'Use negate pattern'
+    pattern: |
+      /**/!(*.js)
+    files: 'temp/file1.js temp/subfolder1/file3.js temp/subfolder1/subfolder2/file5.js'
+
+- template: test-pattern-step.yml
+  parameters:
+    displayName: 'Use braces with negate mark'
+    pattern: |
+      /**/!({file5.js,file6.css)
+    files: 'temp/subfolder1/subfolder2/file5.js temp/subfolder1/subfolder2/file6.css'
+
+- template: test-pattern-step.yml
+  parameters:
     displayName: 'Delete by folder'
     pattern: |
       subfolder1/**/*
