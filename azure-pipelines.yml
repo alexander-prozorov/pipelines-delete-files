@@ -1,4 +1,5 @@
-pool: v-aprozo
+pool: 
+  vmImage: 'windows-latest'
 
 steps:
 - template: test-pattern-step.yml
