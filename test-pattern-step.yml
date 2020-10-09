@@ -32,7 +32,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      existing=$(find temp -type f | xargs)
+      extracted=$(ls temp | xargs)
       if [ "$existing" != "${{ parameters.files }}" ]; then
         echo "Existing files: $existing, expected: ${{ parameters.files }}"; exit 1;
       fi 
