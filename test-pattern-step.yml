@@ -12,6 +12,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
+      rm -rf temp
       mkdir temp && cd temp
       touch file1.js
       touch file2.css
